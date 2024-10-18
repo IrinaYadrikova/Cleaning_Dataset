@@ -22,10 +22,33 @@ For further resources and tutorials, please check out Alex the Analyst's YouTube
 - **PostgreSQL**: As the database management system.
 - **PGAdmin**: This is for managing and querying the database.
 
-## How to Run the Project
+## Creat a table and upload the data
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/your-repo.git
-   cd your-repo
+Here is an SQL query used for importing data from a CSV file into PostgreSQL:
+
+```sql
+INSERT INTO real_estate_data (ParcelID, LandUse, PropertyAddress, SaleDate, SalePrice, LegalReference, SoldAsVacant, OwnerName, OwnerAddress, Acreage, TaxDistrict, LandValue, BuildingValue, TotalValue, YearBuilt, Bedrooms, FullBath, HalfBath)
+SELECT
+    ParcelID,
+    LandUse,
+    PropertyAddress,
+    TO_DATE(SaleDate, 'YYYY-MM-DD'),
+    CAST(SalePrice AS NUMERIC),
+    LegalReference,
+    SoldAsVacant,
+    OwnerName,
+    OwnerAddress,
+    CASE WHEN Acreage = '' THEN NULL ELSE CAST(Acreage AS NUMERIC) END,
+    TaxDistrict,
+    CASE WHEN LandValue = '' THEN NULL ELSE CAST(LandValue AS NUMERIC) END,
+    CASE WHEN BuildingValue = '' THEN NULL ELSE CAST(BuildingValue AS NUMERIC) END,
+    CASE WHEN TotalValue = '' THEN NULL ELSE CAST(TotalValue AS NUMERIC) END,
+    CAST(YearBuilt AS INT),
+    CAST(Bedrooms AS INT),
+    CAST(FullBath AS INT),
+    CAST(HalfBath AS INT)
+FROM staging_real_estate_data;
+```
+
+
 
