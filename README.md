@@ -183,9 +183,10 @@ ALTER TABLE real_estate_data
 DROP COLUMN taxdistrict;
 ```
 ### Standardize text columns (e.g., make all text lowercase or uppercase):
+```sql
 UPDATE real_estate_data
 SET PropertyAddress = upper(PropertyAddress);
-
+```
 -------------
 ## Analyze the Data
 ### 1.Aggregate data
@@ -224,5 +225,13 @@ WITH ranked_data AS (
 SELECT *
 FROM ranked_data
 WHERE rank =3;
+```
+# Conclusion
 
+I used PostgreSQL and PGAdmin in this project to clean and analyse real estate data. Here's what I did:
 
+- Cleaned and Prepared the Data: I fixed missing values, removed duplicates, and standardised the dataset. I also split complex fields and calculated additional fields for better analysis.
+- Data Analysis and Transformation: I wrote SQL queries to find meaningful insights and trends in the data.
+- Documentation and Best Practices: I documented my steps clearly for future reference.
+  
+This project helped me get hands-on experience with managing and analysing big datasets using PostgreSQL.
